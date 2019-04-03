@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
+int main4060()
 {
     
     return EXIT_SUCCESS;
