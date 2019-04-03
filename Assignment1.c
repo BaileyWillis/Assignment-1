@@ -42,9 +42,9 @@ int main()
 		
 		if(character >= 'a' && character <= 'z')     //If statement with conditions (if character is greater than or equal to "a") AND (if character is less than or equal to "z")
 		{
-			character = character + key;             //
-			
-			if(character > 'z')
+			character = character + key;             //Asigns the character entered to the new character by rotating it by the number of time depending on the key (eg. "A" with a key of 4 is now "D")
+		                                             
+			if(character > 'z')                      //
 			{
 				character = character - 'z' + 'a' - 1;
 			}
