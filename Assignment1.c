@@ -1,5 +1,6 @@
 /* Main function of the C program. */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,9 +14,11 @@ int main()
     printf("(C) Encryption of a message with a substitution cipher given message text and alphabet substitution \n");
     printf("(D) Decryption of a message encrypted with a substitution cipher given cipher text and substitutions \n");
     printf("(E) Decryption of a message encrypted with a rotation cipher given cipher text only \n");
-    printf("(F) Decryption of a message encrypted with a substitution cipher given cipher text only \n");
+    printf("(F) Decryption of a message encrypted with a substitution cipher given cipher text only \n\n");
     
     scanf("%c", &cipher_method);
+    
+    
     
     
     switch(cipher_method)
@@ -27,27 +30,32 @@ int main()
 	int i;
 	int key;
 	
-	printf("Enter a message to encrypt: "); //user input for their sentence to be encrypted
-	gets(encryption); //This function reads the text entered by the user and stores it into the string pointed to by str
+	printf("Enter a message to encrypt: \n"); //user input for their sentence to be encrypted
+	scanf("%s",encryption); //scanning the message entered by the user and placing it in the string 'encryption'
 	printf("Enter key: "); //A Key is how many places the encryption rotates the characters eg. key of 3 will turn 'A' into 'D'
 	scanf("%d", &key); //scanning the key entered by the user for the code to execute 
 	
-	for(i = 0; encryption[i] != '\0'; ++i){
+	for(i = 0; encryption[i] != '\0'; ++i)
+	{
 		character = encryption[i];
 		
-		if(character >= 'a' && character <= 'z'){
+		if(character >= 'a' && character <= 'z')
+		{
 			character = character + key;
 			
-			if(character > 'z'){
+			if(character > 'z')
+			{
 				character = character - 'z' + 'a' - 1;
 			}
 			
 			encryption[i] = character;
 		}
-		else if(character >= 'A' && character <= 'Z'){
+		else if(character >= 'A' && character <= 'Z')
+		{
 			character = character + key;
 			
-			if(character > 'Z'){
+			if(character > 'Z')
+			{
 				character = character - 'Z' + 'A' - 1;
 			}
 			
@@ -57,8 +65,11 @@ int main()
 	
 	printf("The encrypted message with key %d is: %s", key, encryption);
 	
-	return 0;
-}
+	}
+	}
+	
+	printf("The encrypted message with key %d is: %s", key, encryption);
+	
           break;
         
         case 'B':
@@ -79,7 +90,7 @@ int main()
         default:
         printf("Invalid Input\n");
           break;
-    }
+    
       
 
     
