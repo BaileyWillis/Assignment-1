@@ -67,10 +67,10 @@ int main()
 	
 	printf("The encrypted message with key %d is: %s", key, encryption);
 	
-	}
-	}
+	    }
 	
-	printf("The encrypted message with key %d is: %s", key, encryption);
+	
+	
 	
           break;
         
@@ -90,11 +90,11 @@ int main()
           break;
         
         default:
-        printf("Invalid Input\n");
+        //printf("Invalid Input\n");
           break;
     
       
-
+}
     
     return 0;
 }
