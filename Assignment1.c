@@ -7,7 +7,7 @@ int rotdecrypt();
 
 int main()
 {
-//changed address why wont you work
+//I think it is working
    // FILE * fp; 
    // FILE * nfp; 
     
