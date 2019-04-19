@@ -1,11 +1,33 @@
-/* Main function of the C program. */
-
-
 #include <stdio.h>
 #include <stdlib.h>
 
+
+int rotencrypt();
+int rotdecrypt();
+
 int main()
 {
+    
+   // FILE * fp; 
+   // FILE * nfp; 
+    
+    //fp = fopen("in.txt", "r"); 
+    
+   // nfp = fopen("out.txt", "w"); 
+    
+    //char l[100]; 
+    
+    //fscanf(fp, "%s", l); 
+    
+   // printf("\n%s\n", l); 
+    
+     //   printf("\n%s\n", l); 
+    
+      //  printf("\n%s\n", l); 
+    
+    
+    
+    
     
     char cipher_method;
  
@@ -17,63 +39,19 @@ int main()
     printf("(E) Decryption of a message encrypted with a rotation cipher given cipher text only \n");
     printf("(F) Decryption of a message encrypted with a substitution cipher given cipher text only \n\n");
     
-    scanf("%c", &cipher_method);                     //scans the option that the user would like to run
+    scanf("%c", &cipher_method);                         //scans the option that the user would like to run
     
     
     
     
-    switch(cipher_method)                            //whatever option was chosen from the main menu, it will perform the appropriate case
+    switch(cipher_method)                                //whatever option was chosen from the main menu, it will perform the appropriate case
     {
-        case 'A':                                    //run option "A" from the main menu
-        {
-	char encryption[100];
-	char character;
-	int i;
-	int key;
-	
-  	printf("Enter a message to encrypt: \n");        //user input for their sentence to be encrypted
-	scanf("%s",encryption);                          //scanning the message entered by the user and placing it in the string 'encryption'
-	printf("Enter key: ");                           //A Key is how many places the encryption rotates the characters eg. key of 3 will turn 'A' into 'D'
- 	scanf("%d", &key);                               //scanning the key entered by the user for the code to execute 
-	
-	for(i = 0; encryption[i] != '\0'; ++i)           //A for loop that: starts by asigning the string 'encryption' to zero,                
-	{                                                //string 'encryption' is not equal to NULL and the string is incriminated by 1  
-		character = encryption[i];                   //Asigns 'encryption' string to 'character'
-		
-		if(character >= 'a' && character <= 'z')     //If statement with conditions (if character is greater than or equal to "a") AND (if character is less than or equal to "z")
-		{
-			character = character + key;             //Asigns the character entered to the new character by rotating it by the number of time depending on the key (eg. "A" with a key of 4 is now "D")
-		                                             
-			if(character > 'z')                      //
-			{
-				character = character - 'z' + 'a' - 1;
-			}
-			
-			encryption[i] = character;
-		}
-		else if(character >= 'A' && character <= 'Z')
-		{
-			character = character + key;
-			
-			if(character > 'Z')
-			{
-				character = character - 'Z' + 'A' - 1;
-			}
-			
-			encryption[i] = character;
-		}
-	}
-	
-	printf("The encrypted message with key %d is: %s", key, encryption);
-	
-	    }
-	
-	
-	
-	
+        case 'A':                                        //run option "A" from the main menu
+        rotencrypt();
           break;
         
         case 'B':
+        rotdecrypt();
           break;
         
         case 'C':
@@ -90,10 +68,104 @@ int main()
         
         default:
         //printf("Invalid Input\n");
-          break;
-    
-      
+          break;    
 }
     
     return 0;
 }
+
+
+
+int rotencrypt()
+
+{
+    	   char encryption[100];
+    	   char character;
+    	   int i;
+    	   int ci_rot;
+    	
+      	   printf("Please enter a message to encrypt: \n"); //user input for their sentence to be encrypted
+      	   scanf(" %[^\n]s",encryption);                          //scanning the message entered by the user and placing it in the string 'encryption'
+    	   printf("Please enter the cipher key: ");         //A Key is how many places the encryption rotates the characters eg. key of 3 will turn 'A' into 'D'
+           scanf(" %d", &ci_rot);                            //scanning the key entered by the user for the code to execute 
+    	
+	       for(i = 0; encryption[i] != '\0'; i++)           //A for loop that: starts by asigning the string 'encryption' to zero,                
+	           {                                            //string 'encryption' is not equal to NULL and the string is incriminated by 1  
+    		    character = encryption[i];                   //Asigns 'encryption' string to 'character'
+		
+    		    if(character >= 'a' && character <= 'z')     //If statement with conditions (if character is greater than or equal to "a") AND (if character is less than or equal to "z")
+		        {
+    			 character = character + ci_rot;             //Asigns the character entered to the new character by rotating it by the number of time depending on the key (eg. "A" with a key of 4 is now "D")
+    		                                             
+    			 if(character > 'z')                         //If the character is then larger than 'z' do the following
+    			     {
+    				  character = character - 'z' - 'a' + 26; //The previous character value of 'z' is added to the ascii value of 'a' and 1 is subtracted 
+    			     }
+    			
+    			encryption[i] = character;                   //The char character is assigned to the string 'encryption'
+		        }
+		        else if(character >= 'A' && character <= 'Z')
+	        	{
+		        	character = character + ci_rot;
+			
+		        	if(character > 'Z')
+		        	{
+			        	character = character - 'Z' - 'A' + 26;
+		        	}
+			
+		        	encryption[i] = character;
+		         }
+               }  
+               
+	       printf("The encrypted message with key %d is: %s", ci_rot, encryption);
+	       
+
+        return 0;
+    }
+
+   
+   int rotdecrypt()
+   
+    {
+        char decryption[100]; 
+        char character;
+	    int i;
+	    int ci_rot;
+	
+	    printf("Please enter a message to decrypt: ");
+	    scanf("%s",decryption); 
+	    printf("Please enter the cipher key: ");
+	    scanf("%d", &ci_rot);
+	
+	    for(i = 0; decryption[i] != '\0'; i++)
+	       {
+		    character = decryption[i];
+		
+		    if(character >= 'a' && character <= 'z')
+		    {
+			 character = character - ci_rot;
+			
+			 if(character < 'a')
+    		  {
+				character = character + 'z' + 'a' - 26;
+			  }
+			
+			 decryption[i] = character;
+		     }
+		      else if(character >= 'A' && character <= 'Z')
+		      {
+			     character = character - ci_rot;
+			
+			     if(character < 'A')
+			     {
+				    character = character + 'Z' + 'A' - 26;
+			     }
+			
+			     decryption[i] = character;
+		      }
+	        }      
+        printf("The decrypted message with key %d is: %s", ci_rot, decryption);
+        
+        
+        return 0;
+     }
