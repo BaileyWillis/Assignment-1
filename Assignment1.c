@@ -25,9 +25,7 @@ int main()
     
       //  printf("\n%s\n", l); 
     
-    
-    
-    
+     
     
     char cipher_method;
  
@@ -99,7 +97,7 @@ int rotencrypt()
     		                                             
     			 if(character > 'z')                         //If the character is then larger than 'z' do the following
     			     {
-    				  character = character + ci_rot - 27; //The previous character value of 'z' is added to the ascii value of 'a' and 1 is subtracted 
+    				  character = character - 'z' + 'a' - 1; //The previous character value of 'z' is added to the ascii value of 'a' and 1 is subtracted 
     			     }
     			
     			encryption[i] = character;                   //The char character is assigned to the string 'encryption'
@@ -110,7 +108,7 @@ int rotencrypt()
 			
 		        	if(character > 'Z')
 		        	{
-			        	character = character + ci_rot - 27;
+			        	character = character - 'Z' + 'A' - 1;
 		        	}
 			
 		        	encryption[i] = character;
@@ -147,7 +145,7 @@ int rotencrypt()
 			
 			 if(character < 'a')
     		  {
-				character = character - ci_rot + 27;
+				character = character + 'z' - 'a' + 1;
 			  }
 			
 			 decryption[i] = character;
@@ -158,7 +156,7 @@ int rotencrypt()
 			
 			     if(character < 'A')
 			     {
-				    character = character - ci_ot + 27;
+				    character = character + 'Z' - 'A' + 1;
 			     }
 			
 			     decryption[i] = character;
