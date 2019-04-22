@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 int rotencrypt();
 int rotdecrypt();
+int subencrypt();
 
 int main()
 {
@@ -53,6 +55,7 @@ int main()
           break;
         
         case 'C':
+        subencrypt();
           break;
         
         case 'D':
@@ -65,7 +68,7 @@ int main()
           break;
         
         default:
-        //printf("Invalid Input\n");
+        printf("Invalid Input\n");
           break;    
 }
     
@@ -167,3 +170,39 @@ int rotencrypt()
         
         return 0;
      }
+     
+   int subencrypt()
+
+    { 
+        char* sub_encrypt = "QWERTYUIOPASDFGHJKLZXCVBNM";    
+        char text_in[500];                                    
+        int counter;
+        int i;
+        int ci_minus;
+    
+    
+        printf("Please enter a message to encrypt using the substitution cipher method: \n");
+        scanf(" %[^\n]s", text_in);                 
+        text_in[strlen(text_in)] = 0;                       
+        counter = strlen(text_in);                          
+
+        char encryption[counter];                                 
+    
+        for(i = 0; i < counter; i++) 
+         {                    
+          ci_minus = ((int) text_in[i]) - 65;              
+           if(ci_minus < 0) 
+           {
+            encryption[i] = ' ';                            
+           }
+           else 
+           {
+            encryption[i] = sub_encrypt[ci_minus];              
+           }
+         }
+          encryption[counter] = 0;                                  
+
+         printf("The encrypted message using substitution is: %s\n", encryption);  
+         
+        return 0;
+    }
