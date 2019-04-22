@@ -174,7 +174,7 @@ int rotencrypt()
    int subencrypt()
 
     { 
-        char* sub_encrypt = "QWERTYUIOPASDFGHJKLZXCVBNM";    
+        char* key = "QWERTYUIOPASDFGHJKLZXCVBNM";    
         char text_in[500];                                    
         int counter;
         int i;
@@ -197,7 +197,7 @@ int rotencrypt()
            }
            else 
            {
-            encryption[i] = sub_encrypt[ci_minus];              
+            encryption[i] = key[ci_minus];              
            }
          }
           encryption[counter] = 0;                                  
