@@ -6,14 +6,21 @@
 int rot_encrypt ();          //function name for case 'A' that encrypts the users text using a rotation of their choice of key
 int rot_decrypt ();          //function name for case 'B' that decrypts the users text using a rotation of their choice of key
 int sub_encrypt ();          //function name for case 'C' that encrypts the users text using a substitution key
-int sub_decrypt ();           //function name for case 'D' that decrypts the users text using a substitution key
+int sub_decrypt ();          //function name for case 'D' that decrypts the users text using a substitution key
 
  
 int main () 
 {
   
- 
- 
+ /*
+ The below 'printf' statements is printed to the user interface as a main menu. This main menu enables the user
+ to choose whatever operation they would like to exicute. By selecting either (A), (B), (C), (D), (E) or (F) the 
+ following switch case's will exicute the correct function. These functions, identified outside the main, are wihin 
+ their corrosponding 'case' and when that case is called by the user, the function name within that case calls that 
+ function to operate. These functions are outside the main below. Once the function has finished exicuting it will then 
+ jump back to the case where it is told to 'break', ending the case and subsequently ending the program.
+ */
+
 char cipher_method;
   
  
@@ -24,31 +31,32 @@ printf ("(C) Encryption of a message with a substitution cipher given message te
 printf ("(D) Decryption of a message encrypted with a substitution cipher given cipher text and substitutions \n"); 
 printf ("(E) Decryption of a message encrypted with a rotation cipher given cipher text only \n");
 printf ("(F) Decryption of a message encrypted with a substitution cipher given cipher text only \n\n");
-scanf ("%c", &cipher_method);	//scans the option that the user would like to run
+
+scanf ("%c", &cipher_method);	 //Scans the option that the user would like to run and stores it in the char 'cipher_method'
   
  
  
  
-switch (cipher_method)	//whatever option was chosen from the main menu, it will perform the appropriate case
+switch (cipher_method)	        //Calls the option that was chosen from the main menu and sends it to that case. The case will then exicute the code inside.
     {
     
-case 'A':			//run option "A" from the main menu
-rot_encrypt ();
+case 'A':			
+rot_encrypt ();                 //Case 'A' calls for function 'rot_encrypt' to be exicuted. The program now jumps down to the function 'rot_encrypt' to perform the code contained inside
 break;
     
  
 case 'B':
-rot_decrypt ();
-break;
+rot_decrypt ();                 //Case 'B' calls for function 'rot_decrypt' to be exicuted. The program now jumps down to the function 'rot_decrypt' to perform the code contained inside
+break;                          
     
  
 case 'C':
-sub_encrypt ();
+sub_encrypt ();                 //Case 'C' calls for function 'sub_encrypt' to be exicuted. The program now jumps down to the function 'sub_encrypt' to perform the code contained inside
 break;
     
  
 case 'D':
-sub_decrypt ();
+sub_decrypt ();                 //Case 'D' calls for function 'sub_decrypt' to be exicuted. The program now jumps down to the function 'sub_decrypt' to perform the code contained inside
 break;
     
  
@@ -60,7 +68,7 @@ case 'F':
 break;
     
  
-default:
+default:                        // If neither (A), (B), (C), (D), (E) or (F) are chosen by the user then the switch statement will automatically exicute the default case, asking the user to imput a valid case
 printf ("Invalid Input\n");
 break;
     
