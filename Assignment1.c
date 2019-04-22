@@ -3,31 +3,14 @@
 #include <string.h>
 
 
-int rotencrypt();
-int rotdecrypt();
-int subencrypt();
+int rot_encrypt();
+int rot_decrypt();
+int sub_encrypt();
+int sub_decryt();
 
 int main()
 {
-//I think it is working
-   // FILE * fp; 
-   // FILE * nfp; 
-    
-    //fp = fopen("in.txt", "r"); 
-    
-   // nfp = fopen("out.txt", "w"); 
-    
-    //char l[100]; 
-    
-    //fscanf(fp, "%s", l); 
-    
-   // printf("\n%s\n", l); 
-    
-     //   printf("\n%s\n", l); 
-    
-      //  printf("\n%s\n", l); 
-    
-     
+
     
     char cipher_method;
  
@@ -47,18 +30,19 @@ int main()
     switch(cipher_method)                                //whatever option was chosen from the main menu, it will perform the appropriate case
     {
         case 'A':                                        //run option "A" from the main menu
-        rotencrypt();
+        rot_encrypt();
           break;
         
         case 'B':
-        rotdecrypt();
+        rot_decrypt();
           break;
         
         case 'C':
-        subencrypt();
+        sub_encrypt();
           break;
         
         case 'D':
+        sub_decrypt();
           break;
         
         case 'E':
@@ -77,7 +61,7 @@ int main()
 
 
 
-int rotencrypt()
+int rot_encrypt()
 
 {
     	   char encryption[100];
@@ -125,7 +109,7 @@ int rotencrypt()
     }
 
    
-   int rotdecrypt()
+   int rot_decrypt()
    
     {
         char decryption[100]; 
@@ -171,10 +155,10 @@ int rotencrypt()
         return 0;
      }
      
-   int subencrypt()
+   int sub_encrypt()
 
     { 
-        char* key = "QWERTYUIOPASDFGHJKLZXCVBNM";    
+        char* subkey = "QWERTYUIOPASDFGHJKLZXCVBNM";    
         char text_in[500];                                    
         int counter;
         int i;
@@ -182,7 +166,9 @@ int rotencrypt()
     
     
         printf("Please enter a message to encrypt using the substitution cipher method: \n");
-        scanf(" %[^\n]s", text_in);                 
+        scanf(" %[^\n]s", text_in);        
+        
+        
         text_in[strlen(text_in)] = 0;                       
         counter = strlen(text_in);                          
 
@@ -197,7 +183,7 @@ int rotencrypt()
            }
            else 
            {
-            encryption[i] = key[ci_minus];              
+            encryption[i] = subkey[ci_minus];              
            }
          }
           encryption[counter] = 0;                                  
@@ -206,3 +192,41 @@ int rotencrypt()
          
         return 0;
     }
+    
+    
+    
+    sub_decrypt()
+    
+{
+char alphabet[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+char subkey[26] = {'Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M'}; 
+
+int i;
+int n;
+int counter;
+char text_in[200];
+char decryption[200]; 
+
+
+printf("Please enter a message to decrypt using the substitution cipher method: \n");
+scanf(" %[^\n]s",text_in);
+
+
+strcpy(decryption,text_in);
+
+counter = strlen(decryption);
+for(i = 0; i < counter; i++)
+{ 
+    for(n = 0; n < 26; n++)
+{
+if(decryption[i]==subkey[n])
+{
+decryption[i]=alphabet[n]; 
+break;
+}
+}
+}
+printf("The decrypted message using substitution is: %s\n", decryption);
+
+return 0;
+}
