@@ -3,10 +3,10 @@
 #include <string.h>
 
  
-int rot_encrypt ();
-int rot_decrypt ();
-int sub_encrypt ();
-int sub_decryt ();
+int rot_encrypt ();          //function name for case 'A' that encrypts the users text using a rotation of their choice of key
+int rot_decrypt ();          //function name for case 'B' that decrypts the users text using a rotation of their choice of key
+int sub_encrypt ();          //function name for case 'C' that encrypts the users text using a substitution key
+int sub_decrypt ();           //function name for case 'D' that decrypts the users text using a substitution key
 
  
 int main () 
@@ -18,20 +18,12 @@ char cipher_method;
   
  
 printf ("Please select one of the following options: \n");
-  
-printf ("(A) Encryption of a message with a rotation cipher given the message text and rotation amount \n");
-  
+printf ("(A) Encryption of a message with a rotation cipher given the message text and rotation amount \n"); 
 printf ("(B) Decryption of a message encrypted with a rotation cipher given cipher text and rotation amount \n");
-  
 printf ("(C) Encryption of a message with a substitution cipher given message text and alphabet substitution \n");
-  
-printf ("(D) Decryption of a message encrypted with a substitution cipher given cipher text and substitutions \n");
-  
+printf ("(D) Decryption of a message encrypted with a substitution cipher given cipher text and substitutions \n"); 
 printf ("(E) Decryption of a message encrypted with a rotation cipher given cipher text only \n");
-  
 printf ("(F) Decryption of a message encrypted with a substitution cipher given cipher text only \n\n");
-  
- 
 scanf ("%c", &cipher_method);	//scans the option that the user would like to run
   
  
@@ -289,7 +281,7 @@ return 0;
  
  
  
-sub_decrypt () 
+int sub_decrypt () 
  
 {
   
