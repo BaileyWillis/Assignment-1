@@ -75,11 +75,19 @@ break;
 }
   
  
-return 0;
+return 0;                      //The 'return 0' is used to signal that the main function exicuted correctly and can now exit
 
 }
 
-
+/*
+The following function, called from case 'A', is a rotating encryption cipher. Furthermore, when called upon by the user through 
+the interactive interface the function will ask the the user to enter text. The function will store the users text in a string called
+"encryption" and follow by asking the user for a key. The key is a integer by which the function rotates the alphabet. e.g. with a
+key of 4 'A' is shifted to 'E', 'B' shifted to 'F' etc... Each character of the keyboard is assigned a number which can be located
+in the ASCII Table. Contained within the for loop, the code stores each character entered and rotates it through the alphabet by the
+key entered accoring to the numbers of the ASCII Table. e.g. 'A' on the ASCII Table is 65, therefore with a key of for it is now 69,
+hence, 69 on the ASCII Table is the charcter 'E' etc... 
+ */
  
  
  
@@ -114,7 +122,7 @@ character = character - 'z' + 'a' - 1;	           //The previous character value
 	    }
 	  
  
-encryption[i] = character;	                      //The char character is assigned to the string 'encryption'
+encryption[i] = character;	                       //The char character is assigned to the string 'encryption'
 	}
       
       else if (character >= 'A' && character <= 'Z')
