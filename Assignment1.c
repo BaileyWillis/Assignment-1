@@ -85,7 +85,7 @@ the interactive interface the function will ask the the user to enter text. The 
 "encryption" and follow by asking the user for a key. The key is a integer by which the function rotates the alphabet. e.g. with a
 key of 4 'A' is shifted to 'E', 'B' shifted to 'F' etc... Each character of the keyboard is assigned a number which can be located
 in the ASCII Table. Contained within the for loop, the code stores each character entered and rotates it through the alphabet by the
-key entered accoring to the numbers of the ASCII Table. e.g. 'A' on the ASCII Table is 65, therefore with a key of for it is now 69,
+key entered accoring to the numbers of the ASCII Table. e.g. 'A' on the ASCII Table is 65, therefore with a key of 4 added it is now 69,
 hence, 69 on the ASCII Table is the charcter 'E' etc... 
  */
  
@@ -95,37 +95,37 @@ int rot_encrypt ()
  
 {
   
-char encryption[100];
-char character;
-int i;
-int ci_rot;
+char encryption[200];                                //String (text) entered by the user stored to 'encryption' where 200 character spaces have been made avaliable
+char character;                                      //A variable that when the string is stored to 'encryption' it is then assigned to 'charcter' so that the for loop can exicute the rotation of each character in the string
+int i;                                               //A variable used that starts at zero and allows the for loop to exicute the rotation by the desired key for each character of the string
+int ci_rot;                                          //Cipher rotation (Key), how much the string is to be rotated alone the alphabet e.g. key 4 with character (A) becomes (E) 
   
  
-printf ("Please enter a message to encrypt: \n");	//user input for their sentence to be encrypted
-scanf (" %[^\n]s", encryption);	                    //scanning the message entered by the user and placing it in the string 'encryption'
-printf ("Please enter the cipher key: ");        	//A Key is how many places the encryption rotates the characters eg. key of 3 will turn 'A' into 'D'
-scanf (" %d", &ci_rot);	                            //scanning the key entered by the user for the code to execute 
+printf ("Please enter a message to encrypt: \n");	 //user input for their sentence to be encrypted
+scanf (" %[^\n]s", encryption);	                     //scanning the message entered by the user and placing it in the string 'encryption'
+printf ("Please enter the cipher key: ");        	 //A Key is how many places the encryption rotates the characters eg. key of 3 will turn 'A' into 'D'
+scanf (" %d", &ci_rot);	                             //scanning the key entered by the user for the code to execute 
   
-for (i = 0; encryption[i] != '\0'; i++)	            //A for loop that: starts by asigning the string 'encryption' to zero,                
-    {				                                //string 'encryption' is not equal to NULL and the string is incriminated by 1  
-      character = encryption[i];	                //Asigns 'encryption' string to 'character'
+for (i = 0; encryption[i] != '\0'; i++)	             //A for loop that: starts by asigning the string 'encryption' to zero,                
+    {				                                 //string 'encryption' is not equal to NULL and the string is incriminated by 1  
+      character = encryption[i];	                 //Asigns 'encryption' string to 'character'
       
-if (character >= 'a' && character <= 'z')	        //If statement with conditions (if character is greater than or equal to "a") AND (if character is less than or equal to "z")
+if (character >= 'a' && character <= 'z')	         //If statement with conditions (if character is greater than or equal to "a") AND (if character is less than or equal to "z")
 	{
 	  
-character = character + ci_rot;	                    //Asigns the character entered to the new character by rotating it by the number of time depending on the key (eg. "A" with a key of 4 is now "D")
+character = character + ci_rot;	                     //Asigns the character entered to the new character by rotating it by the number of time depending on the key (eg. "A" with a key of 4 is now "D")
 	  
-if (character > 'z')	                            //If the character is then larger than 'z' do the following
+if (character > 'z')	                             //If the character is then larger than 'z' do the following
 	    {
-	      
-character = character - 'z' + 'a' - 1;	           //The previous character value of 'z' is added to the ascii value of 'a' and 1 is subtracted 
+	       
+character = character - 'z' + 'a' - 1;	             //The previous character value of 'z' is added to the ascii value of 'a' and 1 is subtracted e.g. if Z is entered with a rotation key of 1, the new character will be A
 	    }
 	  
  
-encryption[i] = character;	                       //The char character is assigned to the string 'encryption'
+encryption[i] = character;	                         //The char characters are reassigned to the string 'encryption' after they have been rotated by the key
 	}
       
-      else if (character >= 'A' && character <= 'Z')
+      else if (character >= 'A' && character <= 'Z') //The same code above but now for upper case characters
 	
 	{
 	  
@@ -148,7 +148,7 @@ encryption[i] = character;
 }
   
  
-printf ("The encrypted message with key %d is: %s", ci_rot, encryption);
+printf ("The encrypted message with key %d is: %s", ci_rot, encryption); //Printed to the user is the following message of the encryped text by the key of which they decided
   
  
  
@@ -157,6 +157,17 @@ return 0;
 }
 
 
+
+/*
+The following function, called from case 'B', is a rotating decryption cipher. Furthermore, when called upon by the user through 
+the interactive interface the function will ask the the user to enter text. The function will store the users text in a string called
+"decryption" and follow by asking the user for a key. The key is a integer by which the function rotates the alphabet. e.g. with a
+key of 4 'A' is shifted to 'W', 'B' shifted to 'X' etc... Each character of the keyboard is assigned a number which can be located
+in the ASCII Table. Contained within the for loop, the code stores each character entered and rotates it through the alphabet by the
+key entered accoring to the numbers of the ASCII Table. e.g. 'A' on the ASCII Table is 65, therefore with a key of 4 added it is now 87,
+hence, 87 on the ASCII Table is the charcter 'W' etc... This is slighly more confusing that the encryption but shown below is how the
+function only uses the 26 characters of the alphabet without calling the other sysmbols of the keyboard 
+ */
  
  
 int rot_decrypt () 
