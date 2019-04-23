@@ -244,43 +244,53 @@ return 0;
 }
 
 
+
+/*
+The following function, called from case 'C', is a substitution encryption cipher. Furthermore, when called upon by the user through 
+the interactive interface the function will ask the the user to enter text. The function will store the users text in a string called
+"text_in". The key is defined by 'subkey' and was given withing the project requirements. The function stores the text entered into the
+string called 'text_in'. The function then determines the strings length using 'strlen'. The function then get the new character in the cipher 
+by subtracting 'A' (65) from the current character. This is effictivly changing 'A' to 'Q', 'B' to 'W' etc... and storing the new, substituted
+characters into the string 'encryption' whereby it is then printed to the user.
+ */
  
 int sub_encrypt () 
  
 {
   
 char subkey[26] = { 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F','G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M' };
-char text_in[500];
-int counter;
-int i;
-int ci_minus;
+char text_in[200];              //String (text) entered by the user stored to 'decryption' where 200 character spaces have been made avaliable
+int counter;                    //The length of the string is stored to counter so that when exicuted in the for loop it exits after the desired amount of characteres needing to be encrypted 
+int i;                          //A variable used that starts at zero and allows the for loop to exicute each character of the string by the substitution
+int ci_minus;                   //A variable where the text entered by the user is stored once the substitution has occured
   
  
  
-printf ("Please enter a message to encrypt using the substitution cipher method: \n");
-scanf (" %[^\n]s", text_in);
+printf ("Please enter a message to encrypt using the substitution cipher method: \n"); //Interface asks the user for text to be encrypted
+scanf (" %[^\n]s", text_in);                                                           //Text ntered by the user is stored in 'text_in'
   
  
  
-text_in[strlen (text_in)] = 0;
+text_in[strlen (text_in)] = 0;                                                         //strlen is used to find the length of the string 
   
-counter = strlen (text_in);
-  
- 
-char encryption[counter];
+counter = strlen (text_in);                                                            //Once the length of the string is found, this integer is stored to 'counter'. This tells the loop how many times to run.
   
  
-for (i = 0; i < counter; i++)
+char encryption[counter];                                                              /*After the length of the string has been determined and stored in 'counter', it is then used to 
+                                                                                       store that amount of spaces in the new string called 'encryption' which will be later printed to the user as the encrypted text 
+                                                                                       */  
+ 
+for (i = 0; i < counter; i++)                                                          //The following for loop assigns 'i' to equal zero, which is to be less than the string 'text_in' length and to repeat until all characters have been exicuted
     
     {
       
-ci_minus = ((int) text_in[i]) - 65;
+ci_minus = ((int) text_in[i]) - 65;                                                    //Determines what the new character needs to be in the cipher by subtracting 'A' (65) from the current character
       
-if (ci_minus < 0)
+if (ci_minus < 0)                                                                      //If the user enters less than zero characterers, the string 'encryption' will be set to a space. This is for if there is more than 1 word entered or no text entred at all
 	
 	{
 	  
-encryption[i] = ' ';
+encryption[i] = ' ';                                                                   //'encryption' string assigned to a space 
 	
 }
       
@@ -288,16 +298,17 @@ encryption[i] = ' ';
 	
 	{
 	  
-encryption[i] = subkey[ci_minus];
+encryption[i] = subkey[ci_minus];                                                      // Else, assign the 'subkey' (encrypted text which has already been substituted) to the encryption string which will then be printed to the user as seen below
 	
 }
     
 }
   
-encryption[counter] = 0;
+encryption[counter] = 0;                                                               //NULL event, therefore the string is terminated
   
  
-printf ("The encrypted message using substitution is: %s\n", encryption);
+printf ("The encrypted message using substitution is: %s\n", encryption);              //Printed to the user is the following message of the encryped text by the substitution key
+  
   
  
 return 0;
@@ -305,6 +316,15 @@ return 0;
 }
 
 
+
+/*
+The following function, called from case 'D', is a substitution encryption cipher. Furthermore, when called upon by the user through 
+the interactive interface the function will ask the the user to enter text. The function will store the users text in a string called
+"text_in". The key is defined by 'subkey' and was given withing the project requirements. The function stores the text entered into the
+string called 'text_in'. The function then determines the strings length using 'strlen'. The function then get the new character in the cipher 
+by subtracting 'A' (65) from the current character. This is effictivly changing 'A' to 'Q', 'B' to 'W' etc... and storing the new, substituted
+characters into the string 'encryption' whereby it is then printed to the user.
+ */
  
  
  
