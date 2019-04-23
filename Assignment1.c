@@ -174,46 +174,46 @@ int rot_decrypt ()
  
 {
   
-char decryption[100];
-char character;
-int i;
-int ci_rot;
+char decryption[200];                                      //String (text) entered by the user stored to 'decryption' where 200 character spaces have been made avaliable
+char character;                                            //A variable that when the string is stored to 'decryption' it is then assigned to 'charcter' so that the for loop can exicute the rotation of each character in the string
+int i;                                                     //A variable used that starts at zero and allows the for loop to exicute the rotation by the desired key for each character of the string
+int ci_rot;                                                //Cipher rotation (Key), how much the string is to be rotated alone the alphabet e.g. key 4 with character (A) becomes (W) 
   
  
-printf ("Please enter a message to decrypt: ");
-scanf ("%s", decryption);
-printf ("Please enter the cipher key: ");
-scanf ("%d", &ci_rot);
+printf ("Please enter a message to decrypt: ");            //user input for their sentence to be decrypted
+scanf ("%s", decryption);                                  //scanning the message entered by the user and placing it in the string 'decryption'
+printf ("Please enter the cipher key: ");                  //A Key is how many places the encryption rotates the characters eg. key of 4 will turn 'A' into 'W'
+scanf ("%d", &ci_rot);                                     //scanning the key entered by the user for the code to execute 
   
  
-for (i = 0; decryption[i] != '\0'; i++)
+for (i = 0; decryption[i] != '\0'; i++)                    //The following for loop sets the variable i to equal zero, the string 'decryption' is not equal to 'NULL' and each character of the loop will be rotated by the key separtly 
     
     {
       
-character = decryption[i];
+character = decryption[i];                                 //The text entered by the user that was saved in the string 'decryption' has now been assigned to the char 'character'
       
  
-if (character >= 'a' && character <= 'z')
+if (character >= 'a' && character <= 'z')                  //If the character entered is greater than or equal to 'a' AND less than or equal to 'z' the following is exicuted
 	
 	{
 	  
-character = character - ci_rot;
+character = character - ci_rot;                            //Each character from the string is minused by the key enetered e.g. 'l' is now 'h'
 	  
  
-if (character < 'a')
+if (character < 'a')                                       //Hence, if the character is less than 'a' or rotates past 'a', then the following is exicuted
 	    
 	    {
 	      
-character = character + 'z' - 'a' + 1;
+character = character + 'z' - 'a' + 1;                     //Each character that rotates past the character 'a' has the ASCII value 'z' added to it, minus the ASCII value 'a', plus 1
 	    
 }
 	  
  
-decryption[i] = character;
+decryption[i] = character;                                 //All the characters from the char character have now been rotated or decryped by the desired key and are now reassigned to the string 'decrytion'
 	
 }
       
-      else if (character >= 'A' && character <= 'Z')
+      else if (character >= 'A' && character <= 'Z')       //The same code above but now for upper case characters
 	
 	{
 	  
@@ -235,7 +235,7 @@ decryption[i] = character;
     
 }
   
-printf ("The decrypted message with key %d is: %s", ci_rot, decryption);
+printf ("The decrypted message with key %d is: %s", ci_rot, decryption);     //Printed to the user is the following message of the decryped text by the key of which they decided
   
  
  
