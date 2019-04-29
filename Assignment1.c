@@ -14,7 +14,7 @@ int main ()
   
  /*
  The below 'printf' statements is printed to the user interface as a main menu. This main menu enables the user
- to choose whatever operation they would like to exicute. By selecting either (A), (B), (C), (D), (E) or (F) the 
+ to choose between operations, depending which exercise they would like to exicute. By selecting either (A), (B), (C), (D), (E) or (F) the 
  following switch case's will exicute the correct function. These functions, identified outside the main, are wihin 
  their corrosponding 'case' and when that case is called by the user, the function name within that case calls that 
  function to operate. These functions are outside the main below. Once the function has finished exicuting it will then 
@@ -248,10 +248,10 @@ return 0;
 /*
 The following function, called from case 'C', is a substitution encryption cipher. Furthermore, when called upon by the user through 
 the interactive interface the function will ask the the user to enter text. The function will store the users text in a string called
-"text_in". The key is defined by 'subkey' and was given withing the project requirements. The function stores the text entered into the
-string called 'text_in'. The function then determines the strings length using 'strlen'. The function then get the new character in the cipher 
-by subtracting 'A' (65) from the current character. This is effictivly changing 'A' to 'Q', 'B' to 'W' etc... and storing the new, substituted
-characters into the string 'encryption' whereby it is then printed to the user.
+"text_in". The key is defined by 'subkey' and was given withing the project requirements. The function then determines the strings length using 'strlen'. 
+The function then get the new character in the cipher by subtracting 'A' (65) from the current character. 
+This is effictivly changing 'A' to 'Q', 'B' to 'W' etc... and storing the new, substituted characters into the string 'encryption' 
+whereby it is then printed to the user.
  */
  
 int sub_encrypt () 
@@ -318,12 +318,11 @@ return 0;
 
 
 /*
-The following function, called from case 'D', is a substitution encryption cipher. Furthermore, when called upon by the user through 
+The following function, called from case 'D', is a substitution decryption cipher. Furthermore, when called upon by the user through 
 the interactive interface the function will ask the the user to enter text. The function will store the users text in a string called
-"text_in". The key is defined by 'subkey' and was given withing the project requirements. The function stores the text entered into the
-string called 'text_in'. The function then determines the strings length using 'strlen'. The function then get the new character in the cipher 
-by subtracting 'A' (65) from the current character. This is effictivly changing 'A' to 'Q', 'B' to 'W' etc... and storing the new, substituted
-characters into the string 'encryption' whereby it is then printed to the user.
+"text_in". The key is defined by 'subkey' and was given withing the project requirements. The function then determines the strings length using 'strlen'. 
+The function then assigns the text entered to the string 'decryption'. Using a for loop, the characters stored in 'decryption' are substituted back to "plan text", 
+defined by the string 'alphabet'.
  */
  
  
@@ -335,47 +334,51 @@ int sub_decrypt ()
 char alphabet[26] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N','O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 char subkey[26] = { 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F','G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M' };
 
-int i;
-int n;
-int counter;
-char text_in[200];
-char decryption[200];
+int i;                       //A variable used that starts at zero and allows the for loop to exicute each character of the string by the substitution
+int n;                       //A variable used that starts at zero and allows the for loop to exicute each character of the string by the substitution
+int counter;                 //Used to store the numerical value of the string entered by the user
+char text_in[200];           //Where the text first entered by the user is stored
+char decryption[200];        //Where the text entered by the user is assigned to the string 'decryption', this is then exicuted in the for loop. Once substituted back into "plan text" it is then printed to the user
   
  
  
-printf ("Please enter a message to decrypt using the substitution cipher method: \n");
-scanf (" %[^\n]s", text_in);
+printf ("Please enter a message to decrypt using the substitution cipher method: \n"); //User is asked to enetr text for decryption by the substitution cipher method
+scanf (" %[^\n]s", text_in);                                                           //Text entered by the user is stored to the string 'text_in'
   
  
  
-strcpy (decryption, text_in);
+strcpy (decryption, text_in);                      //Assigns the string 'text_in' to the new string 'decryption'
   
  
-counter = strlen (decryption);
+counter = strlen (decryption);                     //Using the strlen function, this line counts the length of the string and assigns the number to the ineger 'counter'
   
-for (i = 0; i < counter; i++)
+for (i = 0; i < counter; i++)                      //For loop which will exicute the following loop until the number of characters entered is complete which is know by the variable 'counter'
     
     {
       
-for (n = 0; n < 26; n++)
-	
-	{
+     for (n = 0; n < 26; n++)                      /*A for loop that uses an 'if' statement, changing the encrypted text entered by the user into "plan text". 
+                                                     Because there is only one substitution key (Subkey) it will take the encryptd text that is stored in 'decryption'
+                                                     and then assign it the the correct string called 'alphabet'. this process is carried out for each character
+                                                     until the parent loop fails, meaning all characters have been decrypted back into "plan text"
+	                                               */
+	 {
 	  
-if (decryption[i] == subkey[n])
+      if (decryption[i] == subkey[n])
 	    
-	    {
+	   {
 	      
-decryption[i] = alphabet[n];
+        decryption[i] = alphabet[n];
 	      
-break;
+      break;
 	    
-}
+       }
 	
-}
+     }
     
-}
+    }
   
-printf ("The decrypted message using substitution is: %s\n", decryption);
+printf ("The decrypted message using substitution is: %s\n", decryption); //Printed to the user is the following message of the decryped text by the substitution key
+  
   
  
 return 0;
